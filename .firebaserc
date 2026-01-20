@@ -1,5 +1,7 @@
 {
   "projects": {
     "default": "lcdc-4b377"
-  }
+  },
+  "targets": {},
+  "etags": {}
 }

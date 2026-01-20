@@ -6,7 +6,6 @@
     <title>La Casita del Choripán | El Fuego Nos Une</title>
     <meta name="description" content="Choripanes Gourmet y Parrilla Argentina con impacto social en Puebla.">
     <meta name="facebook-domain-verification" content="sr0r4a0tlo7p236clsilu21bweej53" />
-    <!-- FAVICON: Asegúrate de guardar tu archivo 'favicon.ico' en la carpeta 'assets' -->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 
     <!-- Fuentes de Google -->
@@ -101,8 +100,8 @@
         /* Mobile Menu */
         .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; }
 
-        /* --- HERO SECTION --- */
-        .hero {
+       /* --- HERO SECTION --- */
+       .hero {
             height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1544025162-d76690b60943?q=80&w=2070&auto=format&fit=crop'); /* Imagen de Parrilla */
             background-size: cover;
@@ -116,21 +115,16 @@
         .hero-content h1 { font-size: 3.5rem; margin-bottom: 20px; text-transform: uppercase; }
         .hero-content p { font-size: 1.2rem; margin-bottom: 30px; color: var(--text-muted); max-width: 600px; margin-left: auto; margin-right: auto; }
 
-        /* Estilos para el Logo en Hero */
-        .hero-logo-container {
-            margin-bottom: 20px;
-        }
+        .hero-logo-container { margin-bottom: 20px; }
         .hero-logo-img {
-            max-width: 280px; /* AUMENTADO: Antes 180px, ahora 280px para mayor impacto */
+            max-width: 280px;
             height: auto;
-            filter: drop-shadow(0 0 15px rgba(255, 69, 0, 0.6)); /* Resplandor naranja */
+            filter: drop-shadow(0 0 15px rgba(255, 69, 0, 0.6));
             transition: transform 0.3s ease;
         }
-        .hero-logo-img:hover {
-            transform: scale(1.05);
-        }
+        .hero-logo-img:hover { transform: scale(1.05); }
 
-        /* --- HISTORIA (Acerca de) --- */
+        /* --- HISTORIA --- */
         .section { padding: 80px 0; }
         .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
         .about-img { 
@@ -144,7 +138,7 @@
         .section-title { font-size: 2.5rem; margin-bottom: 40px; border-left: 5px solid var(--primary); padding-left: 15px; }
         .story-text p { margin-bottom: 15px; color: var(--text-muted); }
 
-        /* --- FILOSOFÍA (Misión/Visión/Valores) --- */
+        /* --- FILOSOFÍA --- */
         .philosophy-bg { background-color: var(--bg-card); }
         .mv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 50px; }
         .mv-card { padding: 30px; background: rgba(255,255,255,0.03); border-radius: 8px; border-left: 3px solid var(--primary); }
@@ -234,7 +228,6 @@
         .modal-body p, .modal-body ul { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 10px; }
         .modal-body ul { margin-left: 20px; list-style: disc; }
 
-        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
             .hero-content h1 { font-size: 2.2rem; }
             .about-grid { grid-template-columns: 1fr; }
@@ -244,7 +237,6 @@
             .impact-circle-grid { grid-template-columns: 1fr; }
         }
         
-        /* Scrollbar custom */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--bg-dark); }
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
@@ -266,7 +258,8 @@
                     <li><a href="#historia">Historia</a></li>
                     <li><a href="#filosofia">Filosofía</a></li>
                     <li><a href="#escuela">Escuela de Vida</a></li>
-                    <li><a href="#contacto" class="btn btn-primary" style="padding: 8px 20px; font-size: 0.9rem;">Menú y Pedidos</a></li>
+                    <!-- CAMBIO: Apunta a menu.html -->
+                    <li><a href="menu.html" class="btn btn-primary" style="padding: 8px 20px; font-size: 0.9rem;">Menú y Pedidos</a></li>
                 </ul>
             </nav>
         </div>
@@ -275,21 +268,17 @@
     <!-- HERO SECTION -->
     <section class="hero">
         <div class="container hero-content">
-            
-            <!-- CONTENEDOR DE LOGO -->
             <div class="hero-logo-container">
-                <!-- HREF: Usualmente el logo lleva al inicio (#), no a la imagen misma. 
-                     SRC: Ruta relativa correcta sin 'public' y con '/' -->
                 <a href="#"> 
-                    <!-- NOTA: Asegúrate de que el archivo real se llame 'logo.png' y esté en la carpeta 'assets' -->
                     <img src="assets/logo.png" alt="Logo La Casita" class="hero-logo-img">
                 </a>
             </div>
 
             <h1>El Fuego <span class="text-gradient">Nos Une</span></h1>
             <p>El auténtico sabor del choripán gourmet y la parrilla argentina en Puebla. Sabor de casa con impacto social.</p>
-            <a href="https://wa.me/522225687851?text=Hola,%20quisiera%20ver%20el%20menú%20y%20hacer%20un%20pedido" target="_blank" class="btn btn-primary">
-                <i class="fab fa-whatsapp"></i> Pedir Ahora
+            <!-- CAMBIO: Apunta a menu.html -->
+            <a href="menu.html" class="btn btn-primary">
+                <i class="fas fa-utensils"></i> Ver Menú Completo
             </a>
         </div>
     </section>
@@ -304,19 +293,16 @@
                     <p>La Casita del Choripán nació de la amistad entre dos locos soñadores. Éramos dos amigos con un proyecto bajo el brazo y una convicción en el pecho: queríamos salir adelante. Pero mientras avivábamos las primeras brasas de nuestra parrilla, nos dimos cuenta de algo fundamental: el éxito no sabe a nada si no tienes con quién compartirlo.</p>
                     <p>Miramos a nuestro alrededor y entendimos que "salir adelante" no podía ser una carrera en solitario. Entendimos que el verdadero triunfo no es llegar a la cima solo, sino extender la mano para subir a otros contigo.</p>
                     <p><strong>Hoy, La Casita es el punto de encuentro donde la gastronomía y la humanidad se sientan a la misma mesa.</strong></p>
-                    <!-- BOTÓN SABER MÁS -->
                     <button onclick="openModal('modal-story')" class="btn btn-outline" style="margin-top: 15px; font-size: 0.8rem; padding: 8px 20px;">Saber más</button>
                 </div>
                 <div>
-                    <!-- PLACEHOLDER DE IMAGEN: Ruta corregida. 
-                         Asegúrate de que el archivo real se llame 'parrilla.jpg' y esté dentro de la carpeta 'assets' -->
                     <img src="assets/parrilla.jpg" alt="Parrilla Argentina" class="about-img">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- MANIFIESTO (Separador Visual) -->
+    <!-- MANIFIESTO -->
     <section class="manifesto">
         <div class="manifesto-box">
             <h3 class="manifesto-title">CÓDIGO DEL FUEGO 🔥</h3>
@@ -330,7 +316,7 @@
         </div>
     </section>
 
-    <!-- FILOSOFÍA (Misión/Visión/Valores) -->
+    <!-- FILOSOFÍA -->
     <section id="filosofia" class="section philosophy-bg">
         <div class="container">
             <div class="mv-grid">
@@ -404,10 +390,83 @@
             
             <div class="text-center" style="margin-top: 50px;">
                 <p style="font-style: italic; margin-bottom: 20px;">"No regalamos trabajo, construimos profesionales."</p>
-                <a href="https://wa.me/522225687851?text=Quiero%20saber%20más%20sobre%20Escuela%20de%20Vida" class="btn btn-outline">Conoce Más</a>
+                <!-- CAMBIO: Mailto -->
+                <a href="mailto:info@lcdc.store" class="btn btn-outline">Conoce Más</a>
             </div>
         </div>
     </section>
+     <!-- ================= UBICACIÓN Y ENCUESTA (AÑADIDO) ================= -->
+     <section id="ubicacion-section" class="py-24 bg-[#050505] border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <i data-lucide="map-pin" class="w-12 h-12 text-orange-500 mx-auto mb-4"></i>
+                <h2 class="font-heading text-4xl font-black uppercase italic text-white mb-4">Encuéntranos</h2>
+                <p class="text-neutral-400">Ven a disfrutar del auténtico sabor a las brasas. Te esperamos.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                <!-- Info -->
+                <div class="space-y-8">
+                    <div class="bg-neutral-900/50 p-8 rounded-3xl border border-white/5">
+                        <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                            <i data-lucide="clock" class="text-orange-500"></i> Horarios
+                        </h3>
+                        <ul class="space-y-3 text-neutral-300">
+                            <li class="flex justify-between border-b border-white/5 pb-2">
+                                <span>Martes a Domingo</span>
+                                <span class="font-bold text-white">6:00 PM - 11:00 PM</span>
+                            </li>
+                            <li class="flex justify-between text-neutral-500 pt-2">
+                                <span>Lunes</span>
+                                <span>Cerrado</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-neutral-900/50 p-8 rounded-3xl border border-white/5">
+                        <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                            <i data-lucide="map-pin" class="text-orange-500"></i> Dirección
+                        </h3>
+                        <p class="text-lg text-white font-medium">Av. 5 de mayo 25</p>
+                        <p class="text-neutral-400">Colonia Vicente Suárez, Puebla.</p>
+                        <p class="text-neutral-500 text-sm mt-1">CP 72380</p>
+                    </div>
+                </div>
+
+                <!-- Mapa -->
+                <div class="h-[400px] lg:h-full min-h-[300px] bg-neutral-800 rounded-3xl overflow-hidden border border-white/10 shadow-2xl relative group">
+                    <iframe 
+                        title="Mapa Ubicación"
+                        width="100%" 
+                        height="100%" 
+                        frameborder="0" 
+                        scrolling="no" 
+                        marginheight="0" 
+                        marginwidth="0" 
+                        src="https://maps.google.com/maps?q=Av.+5+de+mayo+25+Vicente+Suárez+72380&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                        class="filter grayscale contrast-125 group-hover:grayscale-0 transition-all duration-700 w-full h-full"
+                    ></iframe>
+                </div>
+            </div>
+
+            <!-- Encuesta -->
+            <div class="mt-20 max-w-3xl mx-auto">
+                <div class="bg-gradient-to-r from-neutral-900 to-neutral-950 p-8 md:p-10 rounded-3xl border border-white/10 text-center relative overflow-hidden">
+                    <div class="relative z-10">
+                        <div class="inline-flex p-3 rounded-full bg-neutral-800 text-orange-500 mb-4">
+                            <i data-lucide="message-square" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">Queremos saber tu opinión</h3>
+                        <p class="text-neutral-400 mb-6 text-sm">Ayúdanos a mejorar contestando una breve encuesta de satisfacción.</p>
+                        <br>
+                        <a href="https://docs.google.com/forms/d/1r04olI9gK6jSIJaog2iNHziTLIjIsQFhpacRihMV0wc/edit?usp=drivesdk" target="_blank" class="btn btn-outline">
+                            Calificar Experiencia <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<br>
 
     <!-- FOOTER -->
     <footer id="contacto">
@@ -416,8 +475,8 @@
                 <div>
                     <h4>LA CASITA DEL CHORIPÁN</h4>
                     <p style="color: #888; font-size: 0.9rem; margin-bottom: 15px;">Av. 5 de Mayo 25, Col. Vicente Suárez,<br>72380, Puebla, Puebla.</p>
-                    <a href="https://wa.me/522225687851" class="btn btn-primary" style="font-size: 0.8rem; padding: 8px 15px;">
-                        <i class="fab fa-whatsapp"></i> 222 568 7851
+                    <a href="https://wa.me/522223019507" class="btn btn-primary" style="font-size: 0.8rem; padding: 8px 15px;">
+                        <i class="fab fa-whatsapp"></i> 222 301 9507
                     </a>
                 </div>
                 <div class="footer-links">
@@ -428,10 +487,15 @@
                     <a onclick="openModal('modal-allergens')">Declaración de Alérgenos</a>
                 </div>
                 <div class="footer-links">
-                    <h4>Sobre Nosotros</h4>
+                    <h4>Contacto y Redes</h4>
                     <a href="#historia">Nuestra Historia</a>
-                    <a href="#escuela">Escuela de Vida</a>
                     <a href="mailto:info@lcdc.store">info@lcdc.store</a>
+                    <!-- REDES ACTUALIZADAS -->
+                    <div style="margin-top: 10px; display: flex; gap: 15px;">
+                        <a href="https://www.facebook.com/lcdc01/" target="_blank"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="https://instagram.com/lacasitadelchoripan1.1" target="_blank"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="https://www.tiktok.com/@lcdc01" target="_blank"><i class="fab fa-tiktok fa-lg"></i></a>
+                    </div>
                 </div>
             </div>
             <div class="copyright">
@@ -440,9 +504,7 @@
         </div>
     </footer>
 
-    <!-- MODALES (Hidden Content) -->
-
-    <!-- Modal HISTORIA COMPLETA -->
+    <!-- MODALES -->
     <div id="modal-story" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('modal-story')">&times;</span>
@@ -462,8 +524,7 @@
             </div>
         </div>
     </div>
-
-    <!-- Modal TyC -->
+    <!-- Otros Modales Legales (Contenido resumido) -->
     <div id="modal-tyc" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('modal-tyc')">&times;</span>
@@ -478,9 +539,7 @@
             </div>
         </div>
     </div>
-
-    <!-- Modal Privacidad -->
-    <div id="modal-privacy" class="modal">
+        <div id="modal-privacy" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('modal-privacy')">&times;</span>
             <div class="modal-body">
@@ -493,8 +552,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Modal Políticas -->
     <div id="modal-policies" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('modal-policies')">&times;</span>
@@ -510,7 +567,7 @@
         </div>
     </div>
 
-    <!-- Modal Alérgenos -->
+    <!-- MODAL ALERGENOS -->
     <div id="modal-allergens" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('modal-allergens')">&times;</span>
@@ -530,9 +587,7 @@
         </div>
     </div>
 
-    <!-- UI SCRIPTS -->
     <script>
-        // Menú Movil
         const menuToggle = document.getElementById('mobile-menu');
         const navLinks = document.querySelector('.nav-links');
         
@@ -540,10 +595,9 @@
             navLinks.classList.toggle('active');
         });
 
-        // Lógica de Modales
         function openModal(id) {
             document.getElementById(id).style.display = "block";
-            document.body.style.overflow = "hidden"; // Evita scroll de fondo
+            document.body.style.overflow = "hidden";
         }
 
         function closeModal(id) {
@@ -551,7 +605,6 @@
             document.body.style.overflow = "auto";
         }
 
-        // Cerrar modal al dar click afuera
         window.onclick = function(event) {
             if (event.target.classList.contains('modal')) {
                 event.target.style.display = "none";
@@ -560,13 +613,10 @@
         }
     </script>
 
-    <!-- FIREBASE INITIALIZATION -->
+    <!-- FIREBASE -->
     <script type="module">
-        // Importamos desde la CDN de Google porque estamos en un archivo HTML simple
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-analytics.js";
-
-        // Configuración de tu proyecto
         const firebaseConfig = {
             apiKey: "AIzaSyAix42VwtBf6BXfTLqMkoICPB-VMoOSCPw",
             authDomain: "lcdc-4b377.firebaseapp.com",
@@ -576,13 +626,8 @@
             appId: "1:258973173926:web:ed390c00e83731f00b8c67",
             measurementId: "G-QERML02HJS"
         };
-
-        // Inicializamos Firebase
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
-        
-        console.log("Firebase y Analytics inicializados correctamente 🔥");
     </script>
-
 </body>
 </html>

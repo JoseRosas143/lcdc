@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú | La Casita del Choripán</title>
+    <!-- Mismos estilos y fuentes que index.html -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Raleway:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { primary: '#FF4500', accent: '#FFA500', dark: '#0a0a0a', card: '#141414' },
+                    fontFamily: { sans: ['Raleway', 'sans-serif'], heading: ['Montserrat', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root { --bg-dark: #0a0a0a; --primary: #FF4500; --text-main: #ffffff; }
+        body { background-color: var(--bg-dark); color: var(--text-main); overflow-x: hidden; margin: 0; padding: 0; }
+        .text-gradient { background: linear-gradient(to right, var(--primary), #FFA500); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        header.original-header { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 15px 0; background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        
+        /* Modales */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.95); backdrop-filter: blur(5px); }
+        .modal-content { background-color: #141414; margin: 5% auto; padding: 40px; border: 1px solid #333; width: 90%; max-width: 800px; border-radius: 8px; max-height: 80vh; overflow-y: auto; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #FF4500; }
+    </style>
+</head>
+<body class="font-sans antialiased text-white selection:bg-orange-600 selection:text-white pt-20">
+
+    <!-- NAVBAR -->
+    <header class="original-header">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <a href="index.html" class="font-heading font-extrabold text-2xl tracking-tighter hover:text-primary transition-colors">
+                LA CASITA <span class="text-primary">DEL CHORIPÁN</span>
+            </a>
+            
+            <div class="flex items-center gap-6">
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex gap-8 items-center font-bold text-sm tracking-widest">
+                    <a href="index.html#historia" class="hover:text-primary transition-colors opacity-80 hover:opacity-100">NOSOTROS</a>
+                    <a href="#" class="text-primary border-b-2 border-primary pb-1">MENÚ</a>
+                    <a href="index.html#ubicacion-section" class="hover:text-primary transition-colors opacity-80 hover:opacity-100">UBICACIÓN</a>
+                </nav>
+
+                <!-- Cart Button (Visible en Mobile y Desktop) -->
+                <button onclick="openCartModal()" class="relative p-2 text-white hover:text-primary transition-colors group">
+                    <i data-lucide="shopping-cart" class="w-6 h-6"></i>
+                    <span id="cart-badge-desktop" class="absolute -top-1 -right-1 bg-orange-600 text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full border-2 border-[#0a0a0a] hidden">0</span>
+                </button>
+
+                <!-- Mobile Toggle -->
+                <button id="mobile-menu-btn" class="md:hidden text-2xl text-white">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-neutral-900 border-b border-white/10 p-6 flex flex-col gap-4 text-center font-bold shadow-2xl">
+            <a href="index.html#historia" class="block py-3 border-b border-white/5">Nosotros</a>
+            <a href="#" class="block py-3 border-b border-white/5 text-primary">Menú</a>
+            <a href="index.html#ubicacion-section" class="block py-3 border-b border-white/5">Ubicación</a>
+            <a href="https://wa.me/522223019507" class="block py-3 text-orange-500">Hacer Pedido</a>
+        </div>
+    </header>
+
+    <!-- MENÚ INTERACTIVO -->
+    <section id="menu-section" class="py-12 md:py-24 relative overflow-hidden bg-neutral-950 min-h-screen">
+        <div class="absolute top-0 right-0 -mr-32 -mt-32 w-96 h-96 bg-orange-600/10 rounded-full blur-[100px]"></div>
+        <div class="absolute bottom-0 left-0 -ml-32 -mb-32 w-96 h-96 bg-red-600/10 rounded-full blur-[100px]"></div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/10 border border-orange-500/20 mb-4 backdrop-blur-sm">
+                    <i data-lucide="flame" class="w-4 h-4 text-orange-500"></i>
+                    <span class="text-orange-500 font-bold tracking-widest text-xs uppercase">Menú Parrilla & Carbón</span>
+                </div>
+                <h2 class="font-heading text-4xl md:text-6xl font-black tracking-tighter mb-4 leading-none">
+                    SABOR ARTESANAL,<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-600">COCINADO AL MOMENTO.</span>
+                </h2>
+                <p class="text-neutral-400 max-w-xl mx-auto">Nuestra especialidad en pan artesanal, cortes jugosos y el toque ahumado que nos distingue.</p>
+            </div>
+
+            <!-- Filtros -->
+            <div class="flex flex-wrap justify-center gap-2 mb-12" id="category-filters">
+                <button onclick="filterMenu('choripanes')" class="filter-btn active px-6 py-2 rounded-lg text-sm font-bold uppercase tracking-wider border border-orange-600 bg-orange-600 text-white shadow-[0_0_15px_rgba(234,88,12,0.4)] transition-all">Choripanes</button>
+                <button onclick="filterMenu('entradas')" class="filter-btn px-6 py-2 rounded-lg text-sm font-bold uppercase tracking-wider border border-neutral-800 bg-neutral-900/50 text-neutral-400 hover:border-orange-500/50 hover:text-white transition-all">Entradas</button>
+                <button onclick="filterMenu('papas')" class="filter-btn px-6 py-2 rounded-lg text-sm font-bold uppercase tracking-wider border border-neutral-800 bg-neutral-900/50 text-neutral-400 hover:border-orange-500/50 hover:text-white transition-all">Papas</button>
+                <button onclick="filterMenu('postres')" class="filter-btn px-6 py-2 rounded-lg text-sm font-bold uppercase tracking-wider border border-neutral-800 bg-neutral-900/50 text-neutral-400 hover:border-orange-500/50 hover:text-white transition-all">Postres</button>
+                <button onclick="filterMenu('bebidas')" class="filter-btn px-6 py-2 rounded-lg text-sm font-bold uppercase tracking-wider border border-neutral-800 bg-neutral-900/50 text-neutral-400 hover:border-orange-500/50 hover:text-white transition-all">Bebidas</button>
+            </div>
+
+            <!-- Grid Productos -->
+            <div id="menu-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
+
+            <!-- Próximamente -->
+            <div id="coming-soon" class="hidden flex-col items-center justify-center py-20 bg-neutral-900/20 rounded-3xl border border-dashed border-neutral-800 text-center">
+                <div class="p-6 bg-neutral-900 rounded-full mb-4 relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-orange-600/20 blur-xl"></div>
+                    <i data-lucide="clock" class="w-10 h-10 text-orange-500 relative z-10"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-2 uppercase tracking-wide">Próximamente</h3>
+                <p class="text-neutral-500">Estamos perfeccionando las mejores recetas para esta sección.</p>
+            </div>
+
+            <!-- Personalización -->
+            <div class="mt-20 border-t border-white/5 pt-16">
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl font-heading font-black uppercase italic mb-2">
+                        Personaliza <span class="text-orange-500">Tu Orden</span>
+                    </h3>
+                    <p class="text-neutral-400">Lleva tu platillo al siguiente nivel.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <div class="bg-neutral-900/50 p-8 rounded-3xl border border-white/5 hover:border-orange-500/30 transition-colors relative overflow-hidden group">
+                        <i data-lucide="star" class="absolute top-0 right-0 m-6 text-neutral-800 w-24 h-24 opacity-20 group-hover:opacity-40 transition-opacity"></i>
+                        <h4 class="text-xl font-bold text-orange-500 mb-6 flex items-center gap-2 uppercase tracking-wider"><i data-lucide="star" class="w-5 h-5 fill-orange-500"></i> Selección Premium</h4>
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-center gap-3 text-neutral-300"><div class="w-1.5 h-1.5 bg-orange-500 rounded-full"></div> Tocino crujiente</li>
+                            <li class="flex items-center gap-3 text-neutral-300"><div class="w-1.5 h-1.5 bg-orange-500 rounded-full"></div> Aguacate fresco</li>
+                            <li class="flex items-center gap-3 text-neutral-300"><div class="w-1.5 h-1.5 bg-orange-500 rounded-full"></div> Extra Queso Manchego</li>
+                        </ul>
+                        <div class="pt-4 border-t border-white/10 text-center"><span class="text-3xl font-black text-white">$20.00</span> <span class="text-sm text-neutral-500">c/u</span></div>
+                    </div>
+                    <div class="bg-gradient-to-br from-neutral-900 to-orange-900/20 p-8 rounded-3xl border border-orange-500/20 hover:border-orange-500/50 transition-colors relative">
+                        <div class="absolute -top-3 -right-3 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg animate-bounce">Promo</div>
+                        <h4 class="text-xl font-bold text-orange-500 mb-2 flex items-center gap-2 uppercase tracking-wider"><i data-lucide="flame" class="w-5 h-5 fill-orange-500"></i> Toque de la Casa</h4>
+                        <p class="text-xs text-neutral-500 uppercase tracking-widest mb-6">Recomendado</p>
+                        <div class="space-y-4 mb-6">
+                            <div><strong class="block text-white">Cebollas Envinadas</strong><span class="text-sm text-neutral-500">Caramelizadas lentamente para un toque dulce y salado.</span></div>
+                            <div><strong class="block text-white">Queso Crema al Chipotle</strong><span class="text-sm text-neutral-500">La cremosidad perfecta con un toque ahumado.</span></div>
+                        </div>
+                        <div class="bg-orange-600/10 rounded-xl p-4 border border-orange-600/20 flex justify-between items-center">
+                            <div class="text-left"><span class="block text-xs text-orange-500 font-bold uppercase">Individual</span><span class="text-white font-bold">$20.00</span></div>
+                            <div class="h-8 w-px bg-white/10"></div>
+                            <div class="text-right"><span class="block text-xs text-red-500 font-bold uppercase">🔥 Promo 2x</span><span class="text-2xl font-black text-white">$30.00</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black py-16 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                <div>
+                    <h4 class="font-heading font-bold text-white mb-4">LA CASITA DEL CHORIPÁN</h4>
+                    <p class="text-gray-500 text-sm mb-4">Sabor artesanal y compromiso social.</p>
+                    <a href="https://wa.me/522223019507" class="text-primary hover:text-white transition-colors text-sm font-bold"><i class="fab fa-whatsapp"></i> 222 301 9507</a>
+                </div>
+                <div>
+                    <h4 class="font-heading font-bold text-white mb-4">LEGALES</h4>
+                    <ul class="space-y-2 text-sm text-gray-500">
+                        <li><a onclick="openModal('modal-tyc')" class="hover:text-primary cursor-pointer">Términos y Condiciones</a></li>
+                        <li><a onclick="openModal('modal-privacy')" class="hover:text-primary cursor-pointer">Aviso de Privacidad</a></li>
+                        <li><a onclick="openModal('modal-allergens')" class="hover:text-primary cursor-pointer">Declaración de Alérgenos</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-heading font-bold text-white mb-4">CONTACTO Y REDES</h4>
+                    <a href="mailto:info@lcdc.store" class="text-gray-500 hover:text-primary transition-colors text-sm">info@lcdc.store</a>
+                    <div class="flex gap-4 mt-4">
+                        <a href="https://www.facebook.com/lcdc01/" target="_blank" class="text-gray-500 hover:text-primary transition-colors"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="https://www.instagram.com/lacasitadelchoripan1.1" target="_blank" class="text-gray-500 hover:text-primary transition-colors"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="https://www.tiktok.com/@lcdc01" target="_blank" class="text-gray-500 hover:text-primary transition-colors"><i class="fab fa-tiktok fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center pt-8 border-t border-white/10 text-xs text-gray-600">
+                &copy; 2025 J R C - La Casita del Choripán. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODALES LEGALES (Ocultos) -->
+    <div id="modal-tyc" class="modal"><div class="modal-content"><span class="float-right cursor-pointer text-white text-2xl" onclick="this.parentElement.parentElement.style.display='none'">&times;</span><h2 class="text-xl font-bold text-primary mb-4">Términos y Condiciones</h2><p class="text-gray-400 text-sm">El presente sitio web es operado por Saúl Tlahuel Juárez...</p></div></div>
+    <div id="modal-privacy" class="modal"><div class="modal-content"><span class="float-right cursor-pointer text-white text-2xl" onclick="this.parentElement.parentElement.style.display='none'">&times;</span><h2 class="text-xl font-bold text-primary mb-4">Aviso de Privacidad</h2><p class="text-gray-400 text-sm">Responsable: Saúl Tlahuel Juárez...</p></div></div>
+    <div id="modal-allergens" class="modal"><div class="modal-content"><span class="float-right cursor-pointer text-white text-2xl" onclick="this.parentElement.parentElement.style.display='none'">&times;</span><h2 class="text-xl font-bold text-primary mb-4">Alergenos</h2><p class="text-gray-400 text-sm">Preparamos alimentos frescos...</p></div></div>
+
+    <!-- MODAL CUSTOMIZATION -->
+    <div id="custom-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/90 backdrop-blur-sm p-4 fade-in">
+        <div class="bg-[#141414] w-full max-w-sm rounded-3xl border border-white/10 shadow-2xl overflow-hidden slide-up">
+            <div class="p-5 border-b border-white/5 flex justify-between items-center bg-neutral-900/50">
+                <div>
+                    <p class="text-xs text-orange-500 font-bold uppercase tracking-widest mb-1">Personalizar</p>
+                    <h3 id="custom-title" class="font-black text-xl leading-none text-white">Item Name</h3>
+                </div>
+                <button onclick="closeCustomModal()" class="p-2 bg-neutral-800 rounded-full hover:bg-neutral-700 text-white"><i data-lucide="x" class="w-4 h-4"></i></button>
+            </div>
+            <div id="custom-options" class="p-5 space-y-3 max-h-[60vh] overflow-y-auto">
+                <!-- Toppings go here -->
+            </div>
+            <div class="p-5 border-t border-white/5 bg-neutral-900/50">
+                <button id="add-custom-btn" class="w-full bg-orange-600 hover:bg-orange-500 text-white font-bold py-3 rounded-xl shadow-lg transition-all active:scale-[0.98]">
+                    Agregar al Pedido
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL CART -->
+    <div id="cart-modal" class="fixed inset-0 z-50 hidden flex items-end sm:items-center justify-center bg-black/90 backdrop-blur-sm p-0 sm:p-4 fade-in">
+        <div class="bg-[#141414] w-full max-w-lg h-[90vh] sm:h-auto sm:max-h-[90vh] rounded-t-3xl sm:rounded-3xl flex flex-col shadow-2xl border border-white/10 slide-up">
+            <div class="p-5 border-b border-white/5 flex justify-between items-center bg-[#141414] rounded-t-3xl">
+                <h2 class="text-xl font-black text-white uppercase italic tracking-tighter flex items-center gap-2">
+                    <span class="text-orange-500">Tu</span> Pedido
+                </h2>
+                <button onclick="closeCartModal()" class="text-neutral-500 hover:text-white p-2 transition-colors">Cerrar</button>
+            </div>
+            
+            <div id="cart-items" class="flex-1 overflow-y-auto p-5 space-y-4">
+                <!-- Cart Items Go Here -->
+            </div>
+
+            <div id="cart-footer" class="bg-[#0f0f0f] border-t border-white/5 p-5 pb-8 rounded-b-3xl">
+                <div class="mb-6 space-y-3 bg-neutral-900/50 p-4 rounded-2xl border border-white/5">
+                    <h3 class="text-xs font-bold text-orange-500 uppercase tracking-widest mb-2">Datos de Envío</h3>
+                    <div class="relative">
+                        <i data-lucide="user" class="absolute top-3 left-3 text-neutral-500 w-4 h-4"></i>
+                        <input type="text" id="customer-name" placeholder="Tu Nombre (Obligatorio)" class="w-full bg-[#141414] border border-white/10 rounded-xl py-2.5 pl-10 pr-4 text-sm text-white focus:outline-none focus:border-orange-500 transition-colors">
+                    </div>
+                    <div class="relative">
+                        <i data-lucide="mail" class="absolute top-3 left-3 text-neutral-500 w-4 h-4"></i>
+                        <input type="email" id="customer-email" placeholder="Correo Electrónico (Opcional)" class="w-full bg-[#141414] border border-white/10 rounded-xl py-2.5 pl-10 pr-4 text-sm text-white focus:outline-none focus:border-orange-500 transition-colors">
+                    </div>
+                    <!-- NUEVO CAMPO DE COMENTARIOS (AGREGAR AQUÍ) -->
+                    <div class="relative">
+                        <i data-lucide="message-square" class="absolute top-3 left-3 text-neutral-500 w-4 h-4"></i>
+                        <textarea id="customer-comments" rows="2" placeholder="¿Alguna instrucción especial? (Ej. Sin cebolla, salsa aparte...)" class="w-full bg-[#141414] border border-white/10 rounded-xl py-2.5 pl-10 pr-4 text-sm text-white focus:outline-none focus:border-orange-500 transition-colors resize-none"></textarea>
+                    </div>
+                    <!-- FIN NUEVO CAMPO -->
+                    <label class="flex items-start gap-3 cursor-pointer group mt-2">
+                        <input type="checkbox" id="privacy-check" class="accent-orange-600 w-4 h-4 mt-0.5">
+                        <span class="text-[10px] text-neutral-400 leading-tight select-none">
+                            He leído y acepto el Aviso de Privacidad. Consiento el uso de mis datos para este pedido.
+                        </span>
+                    </label>
+                </div>
+                
+                <div class="flex justify-between items-center mb-4 text-lg px-1">
+                    <span class="text-neutral-400 text-sm font-bold uppercase tracking-wider">Total Final</span>
+                    <span id="cart-total" class="font-black text-3xl text-white">$0</span>
+                </div>
+                
+                <button onclick="handleWhatsAppOrder()" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-3 uppercase tracking-wide text-sm transition-all shadow-[0_0_20px_rgba(22,163,74,0.3)] active:scale-[0.98]">
+                    <i class="fab fa-whatsapp text-lg"></i> Enviar Pedido
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FLOATING BUTTON -->
+    <div id="floating-cart-btn" class="fixed bottom-4 left-4 right-4 z-40 max-w-3xl mx-auto hidden">
+        <button onclick="openCartModal()" class="w-full bg-gradient-to-r from-orange-600 to-red-600 text-white p-4 rounded-2xl font-bold flex items-center justify-between shadow-[0_10px_40px_-10px_rgba(234,88,12,0.5)] active:scale-[0.98] transition-all border border-white/10">
+            <div class="flex flex-col items-start">
+                <span class="text-[10px] uppercase opacity-80 tracking-widest">Total a pagar</span>
+                <span id="floating-total" class="text-xl font-black">$0</span>
+            </div>
+            <div class="flex items-center gap-2 bg-black/20 px-4 py-2 rounded-xl backdrop-blur-sm">
+                Ver Pedido <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            </div>
+        </button>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="fixed bottom-24 left-1/2 transform -translate-x-1/2 bg-white text-black px-6 py-3 rounded-full shadow-[0_0_30px_rgba(255,255,255,0.2)] text-xs font-bold z-[60] transition-opacity duration-300 opacity-0 pointer-events-none flex items-center gap-2 border border-white/10 whitespace-nowrap">
+        <span id="toast-message">Mensaje</span>
+    </div>
+
+    <script>
+        lucide.createIcons();
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() { document.getElementById('mobile-menu').classList.toggle('hidden'); });
+        
+        // --- DATOS DEL MENÚ ACTUALIZADOS ---
+        const MENU_ITEMS = [
+            // --- ENTRADAS ---
+            { id: 101, name: "Brocheta al Carbón", description: "El inicio perfecto con sabor ahumado. Vegetales frescos intercalados con nuestro jugoso chorizo argentino, sazonados con la receta secreta de la casa y cocidos lentamente a las brasas.", price: 50, category: "entradas", tags: ["Al Carbón"], image: "assets/BR01.JPG", allowExtras: false },
+            
+            // --- CHORIPANES ---
+            { id: 201, name: "Choripán Sencillo", description: "El clásico que nunca falla. Auténtico chorizo argentino de consistencia carnosa y color rosado, asado a la perfección. Servido en pan artesanal crujiente con chimichurri de la casa.", price: 70, category: "choripanes", tags: ["Clásico"], image: "assets/CH01.JPG", allowExtras: true },
+            { id: 202, name: "Choripán con Queso", description: "El favorito de los amantes del queso. Nuestro chorizo argentino asado cubierto con una generosa capa de queso manchego fundido. Cremoso, ahumado y delicioso.", price: 90, category: "choripanes", tags: ["Favorito", "Queso"], image: "assets/CH02.jpeg", allowExtras: true },
+            { id: 203, name: "Choripán Combinado", description: "La experiencia definitiva para carnívoros: chorizo argentino coronado con tiernas fajitas de arrachera asada. Una explosión de sabor potenciada con salsas picantes y aderezos al gusto.", price: 90, category: "choripanes", tags: ["Arrachera + Chorizo"], image: "assets/PE01.JPG", allowExtras: true },
+            { id: 204, name: "Pepito de Arrachera", description: "Generosa porción de arrachera jugosa en fajitas, gratinada con exquisito queso fundido. El toque final lo dan las rebanadas de aguacate fresco y un baño de nuestra salsa chimichurri artesanal.", price: 80, category: "choripanes", tags: ["Gourmet"], image: "assets/PE01.JPG", allowExtras: true },
+            
+            // --- PAPAS (Ahora con Extras) ---
+            { id: 301, name: "Papa Especial", description: "Papa horneada a la mantequilla hasta quedar suave, desbordante de queso manchego derretido y rellena con nuestro chorizo argentino y un toque de chimichurri.", price: 60, category: "papas", tags: ["Horneada"], image: "assets/PA01.JPG", allowExtras: true },
+            { id: 302, name: "Papa Especial Combinada", description: "¡La más completa! Base suave de papa con mantequilla y queso manchego, rellena con una mezcla poderosa: chorizo argentino y jugosa arrachera.", price: 80, category: "papas", tags: ["Full Meat"], image: "assets/PA01.JPG", allowExtras: true }
+        ];
+
+        const EXTRA_TOPPINGS = [
+            { id: 't1', name: 'Tocino Crujiente', price: 20 },
+            { id: 't2', name: 'Aguacate Fresco', price: 20 },
+            { id: 't3', name: 'Extra Queso Manchego', price: 20 },
+            { id: 't4', name: 'Cebollas Envinadas', price: 15 },
+            { id: 't5', name: 'Queso Crema al Chipotle', price: 15 }
+        ];
+
+        // --- ESTADO ---
+        let cart = [];
+        let currentCustomizingItem = null;
+        let tempToppings = [];
+        const BUSINESS_PHONE = "522223019507";
+
+        // --- FUNCIONES RENDER ---
+        function renderMenu(category) {
+            const grid = document.getElementById('menu-grid');
+            const comingSoon = document.getElementById('coming-soon');
+            grid.innerHTML = '';
+            
+            const filtered = MENU_ITEMS.filter(item => item.category === category);
+
+            if (filtered.length === 0) {
+                grid.style.display = 'none';
+                comingSoon.classList.remove('hidden');
+                comingSoon.classList.add('flex');
+            } else {
+                comingSoon.classList.add('hidden');
+                comingSoon.classList.remove('flex');
+                grid.style.display = 'grid';
+
+                filtered.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = "group bg-neutral-900/50 rounded-3xl p-3 border border-white/5 hover:border-orange-500/30 transition-all hover:bg-neutral-900 flex flex-col sm:flex-row gap-4 overflow-hidden relative";
+                    card.innerHTML = `
+                        <div class="w-full sm:w-32 h-40 sm:h-32 rounded-2xl overflow-hidden relative shrink-0">
+                            <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors z-10"></div>
+                            <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                            ${item.tags.includes('Favorito') ? '<div class="absolute top-2 left-2 z-20 bg-orange-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase shadow-lg">Top</div>' : ''}
+                        </div>
+                        <div class="flex-1 flex flex-col justify-between py-1 pr-1">
+                            <div>
+                                <div class="flex justify-between items-start mb-1">
+                                    <h3 class="font-bold text-lg text-white group-hover:text-orange-500 transition-colors leading-tight">${item.name}</h3>
+                                    <span class="font-bold text-lg text-orange-500 whitespace-nowrap ml-2">$${item.price}</span>
+                                </div>
+                                <p class="text-neutral-400 text-xs leading-relaxed mb-3 line-clamp-2">${item.description}</p>
+                            </div>
+                            <div class="flex justify-between items-end">
+                                <div class="flex items-center gap-1.5 flex-wrap">
+                                    ${item.tags.map(tag => `<span class="text-[10px] font-bold text-neutral-500 bg-neutral-800 px-2 py-0.5 rounded border border-white/5 uppercase tracking-wide">${tag}</span>`).join('')}
+                                </div>
+                                <button onclick="initiateAddToCart(${item.id})" class="bg-white text-black px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wide flex items-center gap-2 hover:bg-orange-500 hover:text-white transition-all active:scale-95 shadow-lg shadow-white/5">
+                                    Agregar <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+                lucide.createIcons();
+            }
+        }
+
+        function filterMenu(category) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.className = "filter-btn px-6 py-2 rounded-lg text-sm font-bold uppercase tracking-wider border border-neutral-800 bg-neutral-900/50 text-neutral-400 hover:border-orange-500/50 hover:text-white transition-all";
+            });
+            event.currentTarget.className = "filter-btn active px-6 py-2 rounded-lg text-sm font-bold uppercase tracking-wider border border-orange-600 bg-orange-600 text-white shadow-[0_0_15px_rgba(234,88,12,0.4)] transition-all";
+            renderMenu(category);
+        }
+
+        // --- LÓGICA CARRITO Y EXTRAS ---
+
+        function initiateAddToCart(itemId) {
+            const item = MENU_ITEMS.find(i => i.id === itemId);
+            if (item.allowExtras) {
+                currentCustomizingItem = item;
+                tempToppings = [];
+                renderCustomizationModal();
+                document.getElementById('custom-modal').classList.remove('hidden');
+            } else {
+                addToCart(item, []);
+            }
+        }
+
+        function renderCustomizationModal() {
+            if (!currentCustomizingItem) return;
+            document.getElementById('custom-title').innerText = currentCustomizingItem.name;
+            const container = document.getElementById('custom-options');
+            container.innerHTML = EXTRA_TOPPINGS.map(topping => {
+                const isSelected = tempToppings.includes(topping.id);
+                return `
+                    <div onclick="toggleTopping('${topping.id}')" class="flex justify-between items-center p-3 rounded-xl border cursor-pointer transition-all ${isSelected ? 'bg-orange-500/10 border-orange-500 text-white' : 'bg-neutral-900/50 border-white/5 text-neutral-400 hover:border-white/20'}">
+                        <div class="flex items-center gap-3">
+                            <div class="w-5 h-5 rounded flex items-center justify-center border ${isSelected ? 'bg-orange-500 border-orange-500' : 'border-neutral-600'}">
+                                ${isSelected ? '<i data-lucide="check" class="text-white w-3 h-3"></i>' : ''}
+                            </div>
+                            <span class="font-bold text-sm">${topping.name}</span>
+                        </div>
+                        <span class="text-xs font-bold bg-black/30 px-2 py-1 rounded">+$${topping.price}</span>
+                    </div>
+                `;
+            }).join('');
+            
+            // Botón de confirmar con el evento click
+            const btn = document.getElementById('add-custom-btn');
+            // Remove old listeners to avoid duplicates if any
+            const newBtn = btn.cloneNode(true);
+            btn.parentNode.replaceChild(newBtn, btn);
+            newBtn.addEventListener('click', () => {
+                const selected = EXTRA_TOPPINGS.filter(t => tempToppings.includes(t.id));
+                addToCart(currentCustomizingItem, selected);
+                closeCustomModal();
+            });
+            
+            lucide.createIcons();
+        }
+
+        function toggleTopping(toppingId) {
+            if (tempToppings.includes(toppingId)) {
+                tempToppings = tempToppings.filter(id => id !== toppingId);
+            } else {
+                tempToppings.push(toppingId);
+            }
+            renderCustomizationModal();
+        }
+
+        function addToCart(item, toppings) {
+            // Unique ID based on toppings
+            const toppingsId = toppings.map(t => t.id).sort().join('');
+            const uniqueId = item.id + '-' + toppingsId;
+            
+            const existing = cart.find(i => i.uniqueId === uniqueId);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({ ...item, uniqueId, quantity: 1, selectedToppings: toppings });
+            }
+            
+            updateCartUI();
+            showToast(`¡${item.name} agregado!`);
+        }
+
+        function removeFromCart(uniqueId) {
+            cart = cart.filter(i => i.uniqueId !== uniqueId);
+            updateCartUI();
+        }
+
+        function updateQuantity(uniqueId, change) {
+            const item = cart.find(i => i.uniqueId === uniqueId);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) removeFromCart(uniqueId);
+                else updateCartUI();
+            }
+        }
+
+        function calculateTotal() {
+            return cart.reduce((total, item) => {
+                const toppingsCost = item.selectedToppings.reduce((a, t) => a + t.price, 0);
+                return total + ((item.price + toppingsCost) * item.quantity);
+            }, 0);
+        }
+
+        function updateCartUI() {
+            // Update badges and totals
+            const totalQty = cart.reduce((a, b) => a + b.quantity, 0);
+            const totalCost = calculateTotal();
+            
+            // Desktop badge
+            const badge = document.getElementById('cart-badge-desktop');
+            if (badge) {
+                badge.innerText = totalQty;
+                badge.classList.toggle('hidden', totalQty === 0);
+            }
+
+            // Floating Button
+            const floatBtn = document.getElementById('floating-cart-btn');
+            if (totalQty > 0 && document.getElementById('cart-modal').classList.contains('hidden')) {
+                floatBtn.classList.remove('hidden');
+            } else {
+                floatBtn.classList.add('hidden');
+            }
+            
+            const floatTotal = document.getElementById('floating-total');
+            if (floatTotal) floatTotal.innerText = '$' + totalCost;
+
+            const cartTotal = document.getElementById('cart-total');
+            if (cartTotal) cartTotal.innerText = '$' + totalCost;
+
+            // Render Cart Items inside modal
+            const container = document.getElementById('cart-items');
+            if (container) {
+                if (cart.length === 0) {
+                    container.innerHTML = `
+                        <div class="text-center py-12 opacity-50 flex flex-col items-center">
+                            <i data-lucide="utensils" class="w-8 h-8 text-neutral-600 mb-4"></i>
+                            <p class="text-neutral-400">Tu carrito está vacío.</p>
+                        </div>`;
+                } else {
+                    container.innerHTML = cart.map(item => `
+                        <div class="flex items-start gap-3 bg-neutral-900/50 p-3 rounded-2xl border border-white/5">
+                            <div class="w-16 h-16 rounded-xl overflow-hidden bg-neutral-800 shrink-0 mt-1">
+                                <img src="${item.image}" class="w-full h-full object-cover opacity-80">
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex justify-between items-start">
+                                    <h4 class="font-bold text-white text-sm leading-tight mb-1">${item.name}</h4>
+                                    <button onclick="removeFromCart('${item.uniqueId}')" class="text-red-500/50 hover:text-red-500"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                                </div>
+                                ${item.selectedToppings.length > 0 ? `
+                                    <div class="text-[10px] text-neutral-400 mb-2 space-y-0.5">
+                                        ${item.selectedToppings.map(t => `<div class="flex justify-between"><span>+ ${t.name}</span><span>$${t.price}</span></div>`).join('')}
+                                    </div>
+                                ` : ''}
+                                <div class="flex justify-between items-center mt-2">
+                                    <div class="flex items-center gap-3 bg-black/40 rounded-lg p-1 border border-white/5">
+                                        <button onclick="updateQuantity('${item.uniqueId}', -1)" class="w-6 h-6 flex items-center justify-center text-neutral-400 hover:text-white"><i data-lucide="minus" class="w-3 h-3"></i></button>
+                                        <span class="font-bold w-4 text-center text-xs">${item.quantity}</span>
+                                        <button onclick="updateQuantity('${item.uniqueId}', 1)" class="w-6 h-6 flex items-center justify-center text-neutral-400 hover:text-white"><i data-lucide="plus" class="w-3 h-3"></i></button>
+                                    </div>
+                                    <p class="text-orange-500 font-bold text-sm">$${(item.price + item.selectedToppings.reduce((a,t)=>a+t.price,0)) * item.quantity}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('');
+                }
+            }
+            lucide.createIcons();
+        }
+
+        // --- WHATSAPP CHECKOUT ---
+        function handleWhatsAppOrder() {
+            const name = document.getElementById('customer-name').value.trim();
+            const email = document.getElementById('customer-email').value.trim();
+          // NUEVO: Capturar el valor de los comentarios
+          const comments = document.getElementById('customer-comments').value.trim();
+
+const privacy = document.getElementById('privacy-check').checked;
+
+if (cart.length === 0) return;
+if (!name) { showToast('❌ Escribe tu nombre'); return; }
+if (!privacy) { showToast('❌ Acepta la privacidad'); return; }
+
+let message = `*NUEVO PEDIDO WEB*\n--------------------------------\n👤 *Cliente:* ${name}\n`;
+if (email) message += `📧 *Correo:* ${email}\n`;
+
+// NUEVO: Agregar comentarios al mensaje de WhatsApp si existen
+if (comments) message += `📝 *Notas:* ${comments}\n`;
+
+message += `--------------------------------\n\n*ORDEN DETALLADA:*\n`;
+
+cart.forEach(item => {
+    const totalItem = (item.price + item.selectedToppings.reduce((a,t)=>a+t.price,0)) * item.quantity;
+    message += `▪️ *${item.quantity} x ${item.name}* ($${totalItem})\n`;
+    if(item.selectedToppings.length > 0) {
+        item.selectedToppings.forEach(t => message += `   + ${t.name} (+$${t.price})\n`);
+    }
+    message += `\n`;
+});
+
+message += `--------------------------------\n💰 *TOTAL A PAGAR: $${calculateTotal()}*\n--------------------------------\nAcepto Aviso de Privacidad: Sí\n`;
+
+window.open(`https://api.whatsapp.com/send/?phone=${BUSINESS_PHONE}&text=${encodeURIComponent(message)}&type=phone_number&app_absent=0`, '_blank');
+}
+        // --- UTILS ---
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-message').innerText = msg;
+            toast.style.opacity = '1';
+            setTimeout(() => toast.style.opacity = '0', 2000);
+        }
+
+        function closeCustomModal() { document.getElementById('custom-modal').classList.add('hidden'); }
+        function openCartModal() { 
+            document.getElementById('cart-modal').classList.remove('hidden'); 
+            document.getElementById('floating-cart-btn').classList.add('hidden'); // Hide floater when modal is open
+            updateCartUI(); // Refresh render
+        }
+        function closeCartModal() { 
+            document.getElementById('cart-modal').classList.add('hidden'); 
+            updateCartUI(); // Re-check floater visibility
+        }
+
+        // Initial Render
+        renderMenu('choripanes');
+    </script>
+</body>
+</html>
