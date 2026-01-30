@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menú | La Casita del Choripán</title>
-    <!-- Mismos estilos y fuentes que index.html -->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,7 +24,6 @@
     <style>
         :root { --bg-dark: #0a0a0a; --primary: #FF4500; --text-main: #ffffff; }
         body { background-color: var(--bg-dark); color: var(--text-main); overflow-x: hidden; margin: 0; padding: 0; }
-        .text-gradient { background: linear-gradient(to right, var(--primary), #FFA500); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         header.original-header { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 15px 0; background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.05); }
         
         /* Modales */
@@ -39,7 +37,6 @@
 </head>
 <body class="font-sans antialiased text-white selection:bg-orange-600 selection:text-white pt-20">
 
-    <!-- NAVBAR -->
     <header class="original-header">
         <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
             <a href="index.html" class="font-heading font-extrabold text-2xl tracking-tighter hover:text-primary transition-colors">
@@ -47,20 +44,17 @@
             </a>
             
             <div class="flex items-center gap-6">
-                <!-- Desktop Nav -->
                 <nav class="hidden md:flex gap-8 items-center font-bold text-sm tracking-widest">
                     <a href="index.html#historia" class="hover:text-primary transition-colors opacity-80 hover:opacity-100">NOSOTROS</a>
                     <a href="#" class="text-primary border-b-2 border-primary pb-1">MENÚ</a>
                     <a href="index.html#ubicacion-section" class="hover:text-primary transition-colors opacity-80 hover:opacity-100">UBICACIÓN</a>
                 </nav>
 
-                <!-- Cart Button (Visible en Mobile y Desktop) -->
                 <button onclick="openCartModal()" class="relative p-2 text-white hover:text-primary transition-colors group">
                     <i data-lucide="shopping-cart" class="w-6 h-6"></i>
                     <span id="cart-badge-desktop" class="absolute -top-1 -right-1 bg-orange-600 text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full border-2 border-[#0a0a0a] hidden">0</span>
                 </button>
 
-                <!-- Mobile Toggle -->
                 <button id="mobile-menu-btn" class="md:hidden text-2xl text-white">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -71,11 +65,10 @@
             <a href="index.html#historia" class="block py-3 border-b border-white/5">Nosotros</a>
             <a href="#" class="block py-3 border-b border-white/5 text-primary">Menú</a>
             <a href="index.html#ubicacion-section" class="block py-3 border-b border-white/5">Ubicación</a>
-            <a href="https://wa.me/522223019507" class="block py-3 text-orange-500">Hacer Pedido</a>
+            <a href="https://wa.me/522217523324" class="block py-3 text-orange-500">Hacer Pedido</a>
         </div>
     </header>
 
-    <!-- MENÚ INTERACTIVO -->
     <section id="menu-section" class="py-12 md:py-24 relative overflow-hidden bg-neutral-950 min-h-screen">
         <div class="absolute top-0 right-0 -mr-32 -mt-32 w-96 h-96 bg-orange-600/10 rounded-full blur-[100px]"></div>
         <div class="absolute bottom-0 left-0 -ml-32 -mb-32 w-96 h-96 bg-red-600/10 rounded-full blur-[100px]"></div>
@@ -93,7 +86,6 @@
                 <p class="text-neutral-400 max-w-xl mx-auto">Nuestra especialidad en pan artesanal, cortes jugosos y el toque ahumado que nos distingue.</p>
             </div>
 
-            <!-- Filtros -->
             <div class="flex flex-wrap justify-center gap-2 mb-12" id="category-filters">
                 <button onclick="filterMenu('choripanes')" class="filter-btn active px-6 py-2 rounded-lg text-sm font-bold uppercase tracking-wider border border-orange-600 bg-orange-600 text-white shadow-[0_0_15px_rgba(234,88,12,0.4)] transition-all">Choripanes</button>
                 <button onclick="filterMenu('entradas')" class="filter-btn px-6 py-2 rounded-lg text-sm font-bold uppercase tracking-wider border border-neutral-800 bg-neutral-900/50 text-neutral-400 hover:border-orange-500/50 hover:text-white transition-all">Entradas</button>
@@ -102,10 +94,8 @@
                 <button onclick="filterMenu('bebidas')" class="filter-btn px-6 py-2 rounded-lg text-sm font-bold uppercase tracking-wider border border-neutral-800 bg-neutral-900/50 text-neutral-400 hover:border-orange-500/50 hover:text-white transition-all">Bebidas</button>
             </div>
 
-            <!-- Grid Productos -->
             <div id="menu-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
 
-            <!-- Próximamente -->
             <div id="coming-soon" class="hidden flex-col items-center justify-center py-20 bg-neutral-900/20 rounded-3xl border border-dashed border-neutral-800 text-center">
                 <div class="p-6 bg-neutral-900 rounded-full mb-4 relative overflow-hidden group">
                     <div class="absolute inset-0 bg-orange-600/20 blur-xl"></div>
@@ -115,7 +105,6 @@
                 <p class="text-neutral-500">Estamos perfeccionando las mejores recetas para esta sección.</p>
             </div>
 
-            <!-- Personalización -->
             <div class="mt-20 border-t border-white/5 pt-16">
                 <div class="text-center mb-12">
                     <h3 class="text-3xl font-heading font-black uppercase italic mb-2">
@@ -153,14 +142,13 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer class="bg-black py-16 border-t border-white/10">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
                 <div>
                     <h4 class="font-heading font-bold text-white mb-4">LA CASITA DEL CHORIPÁN</h4>
                     <p class="text-gray-500 text-sm mb-4">Sabor artesanal y compromiso social.</p>
-                    <a href="https://wa.me/522223019507" class="text-primary hover:text-white transition-colors text-sm font-bold"><i class="fab fa-whatsapp"></i> 222 301 9507</a>
+                    <a href="https://wa.me/522217523324" class="text-primary hover:text-white transition-colors text-sm font-bold"><i class="fab fa-whatsapp"></i> 222 175 2324</a>
                 </div>
                 <div>
                     <h4 class="font-heading font-bold text-white mb-4">LEGALES</h4>
@@ -186,12 +174,10 @@
         </div>
     </footer>
 
-    <!-- MODALES LEGALES (Ocultos) -->
     <div id="modal-tyc" class="modal"><div class="modal-content"><span class="float-right cursor-pointer text-white text-2xl" onclick="this.parentElement.parentElement.style.display='none'">&times;</span><h2 class="text-xl font-bold text-primary mb-4">Términos y Condiciones</h2><p class="text-gray-400 text-sm">El presente sitio web es operado por Saúl Tlahuel Juárez...</p></div></div>
     <div id="modal-privacy" class="modal"><div class="modal-content"><span class="float-right cursor-pointer text-white text-2xl" onclick="this.parentElement.parentElement.style.display='none'">&times;</span><h2 class="text-xl font-bold text-primary mb-4">Aviso de Privacidad</h2><p class="text-gray-400 text-sm">Responsable: Saúl Tlahuel Juárez...</p></div></div>
     <div id="modal-allergens" class="modal"><div class="modal-content"><span class="float-right cursor-pointer text-white text-2xl" onclick="this.parentElement.parentElement.style.display='none'">&times;</span><h2 class="text-xl font-bold text-primary mb-4">Alergenos</h2><p class="text-gray-400 text-sm">Preparamos alimentos frescos...</p></div></div>
 
-    <!-- MODAL CUSTOMIZATION -->
     <div id="custom-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/90 backdrop-blur-sm p-4 fade-in">
         <div class="bg-[#141414] w-full max-w-sm rounded-3xl border border-white/10 shadow-2xl overflow-hidden slide-up">
             <div class="p-5 border-b border-white/5 flex justify-between items-center bg-neutral-900/50">
@@ -202,8 +188,7 @@
                 <button onclick="closeCustomModal()" class="p-2 bg-neutral-800 rounded-full hover:bg-neutral-700 text-white"><i data-lucide="x" class="w-4 h-4"></i></button>
             </div>
             <div id="custom-options" class="p-5 space-y-3 max-h-[60vh] overflow-y-auto">
-                <!-- Toppings go here -->
-            </div>
+                </div>
             <div class="p-5 border-t border-white/5 bg-neutral-900/50">
                 <button id="add-custom-btn" class="w-full bg-orange-600 hover:bg-orange-500 text-white font-bold py-3 rounded-xl shadow-lg transition-all active:scale-[0.98]">
                     Agregar al Pedido
@@ -212,7 +197,6 @@
         </div>
     </div>
 
-    <!-- MODAL CART -->
     <div id="cart-modal" class="fixed inset-0 z-50 hidden flex items-end sm:items-center justify-center bg-black/90 backdrop-blur-sm p-0 sm:p-4 fade-in">
         <div class="bg-[#141414] w-full max-w-lg h-[90vh] sm:h-auto sm:max-h-[90vh] rounded-t-3xl sm:rounded-3xl flex flex-col shadow-2xl border border-white/10 slide-up">
             <div class="p-5 border-b border-white/5 flex justify-between items-center bg-[#141414] rounded-t-3xl">
@@ -223,8 +207,7 @@
             </div>
             
             <div id="cart-items" class="flex-1 overflow-y-auto p-5 space-y-4">
-                <!-- Cart Items Go Here -->
-            </div>
+                </div>
 
             <div id="cart-footer" class="bg-[#0f0f0f] border-t border-white/5 p-5 pb-8 rounded-b-3xl">
                 <div class="mb-6 space-y-3 bg-neutral-900/50 p-4 rounded-2xl border border-white/5">
@@ -237,12 +220,10 @@
                         <i data-lucide="mail" class="absolute top-3 left-3 text-neutral-500 w-4 h-4"></i>
                         <input type="email" id="customer-email" placeholder="Correo Electrónico (Opcional)" class="w-full bg-[#141414] border border-white/10 rounded-xl py-2.5 pl-10 pr-4 text-sm text-white focus:outline-none focus:border-orange-500 transition-colors">
                     </div>
-                    <!-- NUEVO CAMPO DE COMENTARIOS (AGREGAR AQUÍ) -->
                     <div class="relative">
                         <i data-lucide="message-square" class="absolute top-3 left-3 text-neutral-500 w-4 h-4"></i>
                         <textarea id="customer-comments" rows="2" placeholder="¿Alguna instrucción especial? (Ej. Sin cebolla, salsa aparte...)" class="w-full bg-[#141414] border border-white/10 rounded-xl py-2.5 pl-10 pr-4 text-sm text-white focus:outline-none focus:border-orange-500 transition-colors resize-none"></textarea>
                     </div>
-                    <!-- FIN NUEVO CAMPO -->
                     <label class="flex items-start gap-3 cursor-pointer group mt-2">
                         <input type="checkbox" id="privacy-check" class="accent-orange-600 w-4 h-4 mt-0.5">
                         <span class="text-[10px] text-neutral-400 leading-tight select-none">
@@ -263,7 +244,6 @@
         </div>
     </div>
 
-    <!-- FLOATING BUTTON -->
     <div id="floating-cart-btn" class="fixed bottom-4 left-4 right-4 z-40 max-w-3xl mx-auto hidden">
         <button onclick="openCartModal()" class="w-full bg-gradient-to-r from-orange-600 to-red-600 text-white p-4 rounded-2xl font-bold flex items-center justify-between shadow-[0_10px_40px_-10px_rgba(234,88,12,0.5)] active:scale-[0.98] transition-all border border-white/10">
             <div class="flex flex-col items-start">
@@ -276,7 +256,6 @@
         </button>
     </div>
 
-    <!-- TOAST NOTIFICATION -->
     <div id="toast" class="fixed bottom-24 left-1/2 transform -translate-x-1/2 bg-white text-black px-6 py-3 rounded-full shadow-[0_0_30px_rgba(255,255,255,0.2)] text-xs font-bold z-[60] transition-opacity duration-300 opacity-0 pointer-events-none flex items-center gap-2 border border-white/10 whitespace-nowrap">
         <span id="toast-message">Mensaje</span>
     </div>
@@ -285,35 +264,63 @@
         lucide.createIcons();
         document.getElementById('mobile-menu-btn').addEventListener('click', function() { document.getElementById('mobile-menu').classList.toggle('hidden'); });
         
-        // --- DATOS DEL MENÚ ACTUALIZADOS ---
+        // --- DATOS DEL MENÚ ACTUALIZADOS Y CORREGIDOS ---
         const MENU_ITEMS = [
             // --- ENTRADAS ---
-            { id: 101, name: "Brocheta al Carbón", description: "El inicio perfecto con sabor ahumado. Vegetales frescos intercalados con nuestro jugoso chorizo argentino, sazonados con la receta secreta de la casa y cocidos lentamente a las brasas.", price: 50, category: "entradas", tags: ["Al Carbón"], image: "assets/BR01.JPG", allowExtras: false },
+            { id: 101, name: "Brocheta al Carbón", description: "El inicio perfecto con sabor ahumado. Vegetales frescos intercalados con nuestro jugoso chorizo argentino, sazonados con la receta secreta de la casa y cocidos lentamente a las brasas.", price: 60, category: "entradas", tags: ["Al Carbón"], image: "assets/BR01.JPG", allowExtras: false },
             
             // --- CHORIPANES ---
             { id: 201, name: "Choripán Sencillo", description: "El clásico que nunca falla. Auténtico chorizo argentino de consistencia carnosa y color rosado, asado a la perfección. Servido en pan artesanal crujiente con chimichurri de la casa.", price: 70, category: "choripanes", tags: ["Clásico"], image: "assets/CH01.JPG", allowExtras: true },
             { id: 202, name: "Choripán con Queso", description: "El favorito de los amantes del queso. Nuestro chorizo argentino asado cubierto con una generosa capa de queso manchego fundido. Cremoso, ahumado y delicioso.", price: 90, category: "choripanes", tags: ["Favorito", "Queso"], image: "assets/CH02.jpeg", allowExtras: true },
-            { id: 203, name: "Choripán Combinado", description: "La experiencia definitiva para carnívoros: chorizo argentino coronado con tiernas fajitas de arrachera asada. Una explosión de sabor potenciada con salsas picantes y aderezos al gusto.", price: 90, category: "choripanes", tags: ["Arrachera + Chorizo"], image: "assets/PE01.JPG", allowExtras: true },
+            { id: 203, name: "Choripán Combinado", description: "La experiencia definitiva para carnívoros: chorizo argentino coronado con tiernas fajitas de arrachera asada. Una explosión de sabor potenciada con salsas picantes y aderezos al gusto.", price: 100, category: "choripanes", tags: ["Arrachera + Chorizo"], image: "assets/PE01.JPG", allowExtras: true },
             { id: 204, name: "Pepito de Arrachera", description: "Generosa porción de arrachera jugosa en fajitas, gratinada con exquisito queso fundido. El toque final lo dan las rebanadas de aguacate fresco y un baño de nuestra salsa chimichurri artesanal.", price: 80, category: "choripanes", tags: ["Gourmet"], image: "assets/PE01.JPG", allowExtras: true },
             
-            // --- PAPAS (Ahora con Extras) ---
-            { id: 301, name: "Papa Especial", description: "Papa horneada a la mantequilla hasta quedar suave, desbordante de queso manchego derretido y rellena con nuestro chorizo argentino y un toque de chimichurri.", price: 60, category: "papas", tags: ["Horneada"], image: "assets/PA01.JPG", allowExtras: true },
-            { id: 302, name: "Papa Especial Combinada", description: "¡La más completa! Base suave de papa con mantequilla y queso manchego, rellena con una mezcla poderosa: chorizo argentino y jugosa arrachera.", price: 80, category: "papas", tags: ["Full Meat"], image: "assets/PA01.JPG", allowExtras: true }
+            // --- PAPAS ---
+            { id: 301, name: "Papa Especial", description: "Papa horneada a la mantequilla hasta quedar suave, desbordante de queso manchego derretido y rellena con nuestro chorizo argentino y un toque de chimichurri.", price: 70, category: "papas", tags: ["Horneada"], image: "assets/PA01.JPG", allowExtras: true },
+            { id: 302, name: "Papa Especial Combinada", description: "¡La más completa! Base suave de papa con mantequilla y queso manchego, rellena con una mezcla poderosa: chorizo argentino y jugosa arrachera.", price: 90, category: "papas", tags: ["Full Meat"], image: "assets/PA01.JPG", allowExtras: true },
+
+            // --- BEBIDAS (Añadidas Correctamente con Coma anterior) ---
+            { 
+                id: 401, 
+                name: "Té (Infusiones)", 
+                description: "Selección de infusiones para los que buscan algo relax. Natural, equilibrado y listo para acompañar, pruebalos: Manzanilla, Limon con Hinojo, Manzana canela  y Negro con frutos rojos.", 
+                price: 25, 
+                category: "bebidas", 
+                tags: ["Relax", "Caliente"], 
+                image: "assets/te.jpg", 
+                allowExtras: true 
+            },
+            { 
+                id: 402, 
+                name: "Agua de Jamaica", 
+                description: "Nuestra pócima natural contra la sed. El contraste perfecto para la intensidad de nuestras salsas. ¡Incluye un refill!", 
+                price: 30, 
+                category: "bebidas", 
+                tags: ["Refill", "Natural"], 
+                image: "assets/jamaica.jpg", 
+                allowExtras: false 
+            }
         ];
 
         const EXTRA_TOPPINGS = [
             { id: 't1', name: 'Tocino Crujiente', price: 20 },
             { id: 't2', name: 'Aguacate Fresco', price: 20 },
             { id: 't3', name: 'Extra Queso Manchego', price: 20 },
-            { id: 't4', name: 'Cebollas Envinadas', price: 15 },
-            { id: 't5', name: 'Queso Crema al Chipotle', price: 15 }
+            { id: 't4', name: 'Cebollas Envinadas', price: 20 },
+            { id: 't5', name: 'Queso Crema al Chipotle', price: 20 },
+            { id: 't6', name: 'Promo Cebollas + Queso crema Chipotle', price: 30 },
+            // --- SABORES DE TÉ ---
+            { id: 'te1', name: 'Sabor: Manzanilla', price: 0 },
+            { id: 'te2', name: 'Sabor: Limón Hinojo', price: 0 },
+            { id: 'te3', name: 'Sabor: Manzana Canela', price: 0 },
+            { id: 'te4', name: 'Sabor: Negro con Frutos Rojos', price: 0 }
         ];
 
         // --- ESTADO ---
         let cart = [];
         let currentCustomizingItem = null;
         let tempToppings = [];
-        const BUSINESS_PHONE = "522223019507";
+        const BUSINESS_PHONE = "522217523324"; // Actualizado
 
         // --- FUNCIONES RENDER ---
         function renderMenu(category) {
@@ -391,27 +398,36 @@
             if (!currentCustomizingItem) return;
             document.getElementById('custom-title').innerText = currentCustomizingItem.name;
             const container = document.getElementById('custom-options');
-            container.innerHTML = EXTRA_TOPPINGS.map(topping => {
+            
+            const isTea = currentCustomizingItem.id === 401;
+            
+            const filteredToppings = EXTRA_TOPPINGS.filter(t => 
+                isTea ? t.id.startsWith('te') : !t.id.startsWith('te')
+            );
+
+            container.innerHTML = filteredToppings.map(topping => {
                 const isSelected = tempToppings.includes(topping.id);
                 return `
-                    <div onclick="toggleTopping('${topping.id}')" class="flex justify-between items-center p-3 rounded-xl border cursor-pointer transition-all ${isSelected ? 'bg-orange-500/10 border-orange-500 text-white' : 'bg-neutral-900/50 border-white/5 text-neutral-400 hover:border-white/20'}">
+                    <div onclick="toggleTopping('${topping.id}', ${isTea})" class="flex justify-between items-center p-3 rounded-xl border cursor-pointer transition-all ${isSelected ? 'bg-orange-500/10 border-orange-500 text-white' : 'bg-neutral-900/50 border-white/5 text-neutral-400 hover:border-white/20'}">
                         <div class="flex items-center gap-3">
                             <div class="w-5 h-5 rounded flex items-center justify-center border ${isSelected ? 'bg-orange-500 border-orange-500' : 'border-neutral-600'}">
                                 ${isSelected ? '<i data-lucide="check" class="text-white w-3 h-3"></i>' : ''}
                             </div>
                             <span class="font-bold text-sm">${topping.name}</span>
                         </div>
-                        <span class="text-xs font-bold bg-black/30 px-2 py-1 rounded">+$${topping.price}</span>
+                        <span class="text-xs font-bold bg-black/30 px-2 py-1 rounded">${topping.price > 0 ? '+$' + topping.price : 'Incluido'}</span>
                     </div>
                 `;
             }).join('');
             
-            // Botón de confirmar con el evento click
             const btn = document.getElementById('add-custom-btn');
-            // Remove old listeners to avoid duplicates if any
             const newBtn = btn.cloneNode(true);
             btn.parentNode.replaceChild(newBtn, btn);
             newBtn.addEventListener('click', () => {
+                if (isTea && tempToppings.length === 0) {
+                    showToast('❌ Elige un sabor de té');
+                    return;
+                }
                 const selected = EXTRA_TOPPINGS.filter(t => tempToppings.includes(t.id));
                 addToCart(currentCustomizingItem, selected);
                 closeCustomModal();
@@ -420,11 +436,15 @@
             lucide.createIcons();
         }
 
-        function toggleTopping(toppingId) {
-            if (tempToppings.includes(toppingId)) {
-                tempToppings = tempToppings.filter(id => id !== toppingId);
+        function toggleTopping(toppingId, isSingleChoice) {
+            if (isSingleChoice) {
+                tempToppings = [toppingId];
             } else {
-                tempToppings.push(toppingId);
+                if (tempToppings.includes(toppingId)) {
+                    tempToppings = tempToppings.filter(id => id !== toppingId);
+                } else {
+                    tempToppings.push(toppingId);
+                }
             }
             renderCustomizationModal();
         }
@@ -537,36 +557,33 @@
         function handleWhatsAppOrder() {
             const name = document.getElementById('customer-name').value.trim();
             const email = document.getElementById('customer-email').value.trim();
-          // NUEVO: Capturar el valor de los comentarios
-          const comments = document.getElementById('customer-comments').value.trim();
+            const comments = document.getElementById('customer-comments').value.trim();
+            const privacy = document.getElementById('privacy-check').checked;
 
-const privacy = document.getElementById('privacy-check').checked;
+            if (cart.length === 0) return;
+            if (!name) { showToast('❌ Escribe tu nombre'); return; }
+            if (!privacy) { showToast('❌ Acepta la privacidad'); return; }
 
-if (cart.length === 0) return;
-if (!name) { showToast('❌ Escribe tu nombre'); return; }
-if (!privacy) { showToast('❌ Acepta la privacidad'); return; }
+            let message = `*NUEVO PEDIDO WEB*\n--------------------------------\n👤 *Cliente:* ${name}\n`;
+            if (email) message += `📧 *Correo:* ${email}\n`;
+            if (comments) message += `📝 *Notas:* ${comments}\n`;
 
-let message = `*NUEVO PEDIDO WEB*\n--------------------------------\n👤 *Cliente:* ${name}\n`;
-if (email) message += `📧 *Correo:* ${email}\n`;
+            message += `--------------------------------\n\n*ORDEN DETALLADA:*\n`;
 
-// NUEVO: Agregar comentarios al mensaje de WhatsApp si existen
-if (comments) message += `📝 *Notas:* ${comments}\n`;
+            cart.forEach(item => {
+                const totalItem = (item.price + item.selectedToppings.reduce((a,t)=>a+t.price,0)) * item.quantity;
+                message += `▪️ *${item.quantity} x ${item.name}* ($${totalItem})\n`;
+                if(item.selectedToppings.length > 0) {
+                    item.selectedToppings.forEach(t => message += `   + ${t.name} (+$${t.price})\n`);
+                }
+                message += `\n`;
+            });
 
-message += `--------------------------------\n\n*ORDEN DETALLADA:*\n`;
+            message += `--------------------------------\n💰 *TOTAL A PAGAR: $${calculateTotal()}*\n--------------------------------\nAcepto Aviso de Privacidad: Sí\n`;
 
-cart.forEach(item => {
-    const totalItem = (item.price + item.selectedToppings.reduce((a,t)=>a+t.price,0)) * item.quantity;
-    message += `▪️ *${item.quantity} x ${item.name}* ($${totalItem})\n`;
-    if(item.selectedToppings.length > 0) {
-        item.selectedToppings.forEach(t => message += `   + ${t.name} (+$${t.price})\n`);
-    }
-    message += `\n`;
-});
+            window.open(`https://api.whatsapp.com/send/?phone=${BUSINESS_PHONE}&text=${encodeURIComponent(message)}&type=phone_number&app_absent=0`, '_blank');
+        }
 
-message += `--------------------------------\n💰 *TOTAL A PAGAR: $${calculateTotal()}*\n--------------------------------\nAcepto Aviso de Privacidad: Sí\n`;
-
-window.open(`https://api.whatsapp.com/send/?phone=${BUSINESS_PHONE}&text=${encodeURIComponent(message)}&type=phone_number&app_absent=0`, '_blank');
-}
         // --- UTILS ---
         function showToast(msg) {
             const toast = document.getElementById('toast');
@@ -578,12 +595,12 @@ window.open(`https://api.whatsapp.com/send/?phone=${BUSINESS_PHONE}&text=${encod
         function closeCustomModal() { document.getElementById('custom-modal').classList.add('hidden'); }
         function openCartModal() { 
             document.getElementById('cart-modal').classList.remove('hidden'); 
-            document.getElementById('floating-cart-btn').classList.add('hidden'); // Hide floater when modal is open
-            updateCartUI(); // Refresh render
+            document.getElementById('floating-cart-btn').classList.add('hidden'); 
+            updateCartUI(); 
         }
         function closeCartModal() { 
             document.getElementById('cart-modal').classList.add('hidden'); 
-            updateCartUI(); // Re-check floater visibility
+            updateCartUI(); 
         }
 
         // Initial Render
