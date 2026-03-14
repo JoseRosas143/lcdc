@@ -354,8 +354,8 @@
                                     <h3 class="font-bold text-lg text-white group-hover:text-orange-500 transition-colors leading-tight">${item.name}</h3>
                                     <span class="font-bold text-lg text-orange-500 whitespace-nowrap ml-2">$${item.price}</span>
                                 </div>
-                                <p class="text-neutral-400 text-xs leading-relaxed mb-3 line-clamp-2">${item.description}</p>
-                            </div>
+<p id="desc-${item.id}" class="text-neutral-400 text-xs leading-relaxed mb-1 line-clamp-2 transition-all duration-300">${item.description}</p>
+<button id="btn-desc-${item.id}" onclick="toggleDescription(${item.id}, event)" class="text-orange-500 text-[10px] font-bold uppercase tracking-wider hover:text-white transition-colors mb-3 focus:outline-none text-left w-max">Leer más</button>                            </div>
                             <div class="flex justify-between items-end">
                                 <div class="flex items-center gap-1.5 flex-wrap">
                                     ${item.tags.map(tag => `<span class="text-[10px] font-bold text-neutral-500 bg-neutral-800 px-2 py-0.5 rounded border border-white/5 uppercase tracking-wide">${tag}</span>`).join('')}
@@ -605,6 +605,24 @@
 
         // Initial Render
         renderMenu('choripanes');
+        // --- FUNCIÓN PARA LEER MÁS / LEER MENOS ---
+function toggleDescription(id, event) {
+    // Evita que el botón haga cosas raras si está dentro de un enlace
+    if (event) event.preventDefault(); 
+    
+    const descElement = document.getElementById(`desc-${id}`);
+    const btnElement = document.getElementById(`btn-desc-${id}`);
+    
+    // Si el texto está cortado, lo expandimos
+    if (descElement.classList.contains('line-clamp-2')) {
+        descElement.classList.remove('line-clamp-2');
+        btnElement.innerText = 'Leer menos';
+    } else {
+        // Si el texto está expandido, lo volvemos a cortar
+        descElement.classList.add('line-clamp-2');
+        btnElement.innerText = 'Leer más';
+    }
+}
     </script>
 </body>
 </html>
